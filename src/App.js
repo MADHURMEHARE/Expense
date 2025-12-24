@@ -5,24 +5,43 @@ import ExpenseInfo from "./components/ExpenseInfo/ExpenseInfo";
 import ExpenseList from "./components/ExpenseList/ExpenseList";
 
 export default class App extends React.Component {
-  // Create state for the expenses here
+  state = {
+    expenses: []
+  };
+
+  // Add expense
+  addExpense = (expense) => {
+    this.setState((prevState) => ({
+      expenses: [expense, ...prevState.expenses]
+    }));
+  };
+
+  // Delete expense
+  deleteExpense = (id) => {
+    this.setState((prevState) => ({
+      expenses: prevState.expenses.filter(
+        (expense) => expense.id !== id
+      )
+    }));
+  };
 
   render() {
     return (
       <>
         <h2 className="mainHeading">Expense Tracker</h2>
+
         <div className="App">
-          {/* Render expense form here */}
-          <ExpenseForm
-          />
+          {/* Expense Form */}
+          <ExpenseForm addExpense={this.addExpense} />
+
           <div className="expenseContainer">
-            {/* Render Expense Info here
-            Render Expense List here */}
-            <ExpenseInfo
-            
-            />
+            {/* Expense Info */}
+            <ExpenseInfo expenses={this.state.expenses} />
+
+            {/* Expense List */}
             <ExpenseList
-            
+              expenses={this.state.expenses}
+              deleteExpense={this.deleteExpense}
             />
           </div>
         </div>
