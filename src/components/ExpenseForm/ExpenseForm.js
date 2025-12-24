@@ -6,20 +6,21 @@ export default function ExpenseForm({ addExpense }) {
   const expenseTextInput = useRef();
   const expenseAmountInput = useRef();
 
-  // Submit handler
+  // Form submit handler
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
     const text = expenseTextInput.current.value;
     const amount = Number(expenseAmountInput.current.value);
 
+    // Create expense object
     const expense = {
       id: Date.now(),
       text,
       amount
     };
 
-    // Call parent function
+    // Call addExpense from props
     addExpense(expense);
 
     // Clear inputs
@@ -34,11 +35,11 @@ export default function ExpenseForm({ addExpense }) {
       <label htmlFor="expenseText">Text</label>
       <input
         id="expenseText"
-        className={styles.input}
         type="text"
         placeholder="Enter text..."
         ref={expenseTextInput}
         required
+        className={styles.input}
       />
 
       <div>
@@ -47,12 +48,12 @@ export default function ExpenseForm({ addExpense }) {
       </div>
 
       <input
-        className={styles.input}
         id="expenseAmount"
         type="number"
         placeholder="Enter amount..."
         ref={expenseAmountInput}
         required
+        className={styles.input}
       />
 
       <button className={styles.submitBtn}>Add Transaction</button>

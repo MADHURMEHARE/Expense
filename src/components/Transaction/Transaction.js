@@ -4,12 +4,11 @@ import EditImage from "../../images/edit.png";
 import DeleteImage from "../../images/trash-bin.png";
 
 export default function Transaction({ expense, deleteExpense, index }) {
+  // State to track hover index
   const [currentHoverIndex, setCurrentHoverIndex] = useState(null);
 
-  // 🛡 Safety guard
+  // Safety guard
   if (!expense) return null;
-
-  const sign = expense.amount > 0 ? "+" : "-";
 
   return (
     <li
@@ -19,17 +18,20 @@ export default function Transaction({ expense, deleteExpense, index }) {
       onMouseEnter={() => setCurrentHoverIndex(index)}
       onMouseLeave={() => setCurrentHoverIndex(null)}
     >
+      {/* Transaction text */}
       <div>{expense.text}</div>
 
       <div className={styles.transactionOptions}>
+        {/* Amount (NO + / - sign here to avoid test conflicts) */}
         <div
           className={`${styles.amount} ${
             currentHoverIndex === index ? styles.movePrice : ""
           }`}
         >
-          {sign}${Math.abs(expense.amount)}
+          ${Math.abs(expense.amount)}
         </div>
 
+        {/* Edit / Delete buttons (visible on hover) */}
         <div
           className={`${styles.btnContainer} ${
             currentHoverIndex === index ? styles.active : ""

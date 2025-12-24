@@ -1,22 +1,23 @@
-import "./App.css";
 import React from "react";
+import "./App.css";
 import ExpenseForm from "./components/ExpenseForm/ExpenseForm";
 import ExpenseInfo from "./components/ExpenseInfo/ExpenseInfo";
 import ExpenseList from "./components/ExpenseList/ExpenseList";
 
 export default class App extends React.Component {
+  // State to store all expenses
   state = {
     expenses: []
   };
 
-  // Add expense
+  // Function to add a new expense
   addExpense = (expense) => {
     this.setState((prevState) => ({
       expenses: [expense, ...prevState.expenses]
     }));
   };
 
-  // Delete expense
+  // Function to delete an expense by id
   deleteExpense = (id) => {
     this.setState((prevState) => ({
       expenses: prevState.expenses.filter(
