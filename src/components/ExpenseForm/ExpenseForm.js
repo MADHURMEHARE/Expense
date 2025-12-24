@@ -1,12 +1,11 @@
 import React from "react";
 import styles from "./ExpenseForm.module.css";
 
-export default class ExpenseForm extends React.Component {
+export default function ExpenseForm() {
   // Create state or ref for the inputs here
 
-  render() {
-    return (
-      <form className={styles.form} onSubmit={() => {}}>
+  return (
+    <form className={styles.form} onSubmit={() => {}}>
         <h3>Add new transaction</h3>
         <label htmlFor="expenseText">Text</label>
         <input
@@ -31,4 +30,5 @@ export default class ExpenseForm extends React.Component {
       </form>
     );
   }
-}
+
+  // Create submit handler function here
